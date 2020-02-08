@@ -8,8 +8,6 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Duration;
-
 @SpringBootApplication
 @EnableCircuitBreaker
 public class MovieCatalogServiceApplication {
@@ -17,10 +15,7 @@ public class MovieCatalogServiceApplication {
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
-        return restTemplateBuilder
-                .setReadTimeout(Duration.ofSeconds(5))
-                .setConnectTimeout(Duration.ofSeconds(5))
-                .build();
+        return new RestTemplate();
     }
 
     public static void main(String[] args) {
